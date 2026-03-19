@@ -33,44 +33,19 @@ export default function SearchBox({ onSelect }) {
 
 	return (
 		<div style={{ position: "relative" }}>
-			<input
-				type="text"
+			<input type="text"
 				value={query}
 				onChange={(e) => search(e.target.value)}
 				placeholder="Pesquisar morada..."
-				style={{ width: "100%",
-					padding: "8px",
-					borderStyle: "double",
-					borderRadius: "5px" }}
-			/>
+				className="form-control" />
 
 			{results.length > 0 && (
-				<ul
-					style={{
-						position: "absolute",
-						top: "40px",
-						left: 0,
-						right: 0,
-						background: "white",
-						border: "1px solid #ccc",
-						listStyle: "none",
-						padding: 0,
-						margin: 0,
-						maxHeight: "200px",
-						overflowY: "auto",
-						zIndex: 1000,
-					}}
-				>
+				<ul className="drop_down list-group position-absolute w-100"
+					style={{ top: "40px", zIndex: 1000 }} >
 					{results.map((item) => (
-						<li
-							key={item.properties.place_id}
+						<li key={item.properties.place_id}
 							onClick={() => handleSelect(item)}
-							style={{
-								padding: "8px",
-								cursor: "pointer",
-								borderBottom: "1px solid #eee",
-							}}
-						>
+							className="list-group-item" >
 							{item.properties.formatted}
 						</li>
 					))}
