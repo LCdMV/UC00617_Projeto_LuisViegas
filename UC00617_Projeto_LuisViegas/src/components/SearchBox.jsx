@@ -9,7 +9,7 @@ export default function SearchBox({ onSelect }) {
 	const search = async (text) => {
 		setQuery(text);
 
-		if (text.length < 3) {
+		if (text.length < 5) {
 			setResults([]);
 			return;
 		}
@@ -27,8 +27,8 @@ export default function SearchBox({ onSelect }) {
 	const handleSelect = (item) => {
 		const { lat, lon, formatted } = item.properties;
 		onSelect(lat, lon, formatted);
-		setQuery(formatted);
 		setResults([]);
+		setQuery("");
 	};
 
 	return (
@@ -38,7 +38,10 @@ export default function SearchBox({ onSelect }) {
 				value={query}
 				onChange={(e) => search(e.target.value)}
 				placeholder="Pesquisar morada..."
-				style={{ width: "100%", padding: "8px" }}
+				style={{ width: "100%",
+					padding: "8px",
+					borderStyle: "double",
+					borderRadius: "5px" }}
 			/>
 
 			{results.length > 0 && (
